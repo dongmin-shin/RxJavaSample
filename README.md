@@ -6,9 +6,9 @@ Chapter 8 변경 사항
 - Retrofit2에서 RxJava를 사용하기 위해서는 다음과 같은 작업이 필요하다.
 - build.gradle에 compile 'com.squareup.retrofit:adapter-rxjava:2.x.x' 추가
 - Retrofit 객체 생성 시,
-    Retrofit retrofit = new Retrofit.Builder()
-    .client(okHttpClient)
-    .baseUrl(MovieDbApi.END_POINT)
-    .addConverterFactory(GsonConverterFactory.create())
-    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-    .build();
+| Retrofit retrofit = new Retrofit.Builder()
+|   .client(okHttpClient)
+|   .baseUrl(MovieDbApi.END_POINT)
+|   .addConverterFactory(GsonConverterFactory.create())
+|   .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+|   .build();
