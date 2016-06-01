@@ -17,6 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.dongminshin.sample.chapter8.ui.StackExchangeActivity"></activity>
     </application>
 
 </manifest>
