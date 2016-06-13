@@ -1,5 +1,7 @@
 package com.example.dongminshin.sample.chapter4;
 
+import android.util.Log;
+
 import com.example.dongminshin.executor.BaseExecutor;
 import com.example.dongminshin.sample.SampleStringList;
 
@@ -21,17 +23,17 @@ public class SampleSkipLast extends BaseExecutor {
         Observable.from(stringList).skipLast(2).subscribe(new Subscriber<String>() {
             @Override
             public void onCompleted() {
-                System.out.println("onCompleted");
+                Log.d("TEST", "onCompleted");
             }
 
             @Override
             public void onError(Throwable e) {
-                System.out.println("onError : " + e.getMessage());
+                Log.d("TEST", "onError", e);
             }
 
             @Override
             public void onNext(String s) {
-                System.out.println("onNext : " + s);
+                Log.d("TEST", "onNext : " + s);
             }
         });
     }

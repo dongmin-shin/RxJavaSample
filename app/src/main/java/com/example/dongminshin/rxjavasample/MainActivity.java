@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.example.dongminshin.sample.chapter3.SampleTimer;
+import com.example.dongminshin.sample.chapter4.SampleDebounce;
 import com.example.dongminshin.sample.chapter8.ui.OpenWeatherMapActivity;
 import com.example.dongminshin.sample.chapter8.ui.StackExchangeActivity;
 
@@ -20,8 +20,62 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        SampleTimer sampleTimer = new SampleTimer();
-        sampleTimer.execute(this);
+        // OfType
+//        SampleOfType sampleOfType = new SampleOfType();
+//        sampleOfType.execute();
+
+        // Take
+//        SampleTake sampleTake = new SampleTake();
+//        sampleTake.execute();
+
+        // TakeLast
+//        SampleTakeLast sampleTakeLast = new SampleTakeLast();
+//        sampleTakeLast.execute();
+
+        // Distinct
+//        SampleDistinct sampleDistinct = new SampleDistinct();
+//        sampleDistinct.execute();
+
+        // Distinct with parameter
+//        SampleDistinctParameter sampleDistinctParameter = new SampleDistinctParameter();
+//        sampleDistinctParameter.execute();
+
+        // DistinctUntilChanged
+//        SampleDistinctUntilChanged sampleDistinctUntilChanged = new SampleDistinctUntilChanged();
+//        sampleDistinctUntilChanged.execute();
+
+        // First
+//        SampleFirst sampleFirst = new SampleFirst();
+//        sampleFirst.execute();
+
+        // Last
+//        SampleLast sampleLast = new SampleLast();
+//        sampleLast.execute();
+
+        // Skip
+//        SampleSkip sampleSkip = new SampleSkip();
+//        sampleSkip.execute();
+
+        // SkipLast
+//        SampleSkipLast sampleSkipLast = new SampleSkipLast();
+//        sampleSkipLast.execute();
+
+        // elementAt
+//        SampleElementAt sampleElementAt = new SampleElementAt();
+//        sampleElementAt.execute();
+
+        // Sample
+//        SampleSample sampleSample = new SampleSample();
+//        sampleSample.execute();
+
+        // Timeout
+//        SampleTimeout sampleTimeout = new SampleTimeout();
+//        sampleTimeout.execute();
+
+        // Debounce
+        SampleDebounce sampleDebounce = new SampleDebounce();
+        sampleDebounce.execute();
+
 
     }
 

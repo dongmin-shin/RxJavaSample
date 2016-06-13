@@ -3,24 +3,29 @@ package com.example.dongminshin.sample.chapter4;
 import android.util.Log;
 
 import com.example.dongminshin.executor.BaseExecutor;
-import com.example.dongminshin.sample.SampleStringList;
+import com.example.dongminshin.sample.SampleDuplicatedList;
 
 import java.util.List;
 
 import rx.Observable;
-import rx.Subscriber;
+import rx.Observer;
+import rx.functions.Func1;
 
 /**
- * Created by DongMinShin on 16. 5. 23..
+ * Created by DongMinShin on 16. 5. 22..
  */
-public class SampleFirst extends BaseExecutor {
-
+public class SampleDistinctParameter extends BaseExecutor {
     @Override
     public void execute() {
-        SampleStringList sampleStringList = new SampleStringList();
-        List<String> stringList = sampleStringList.getSampleList();
+        SampleDuplicatedList sampleDuplicatedList = new SampleDuplicatedList();
+        List<String> duplicatedList = sampleDuplicatedList.getSampleList();
 
-        Observable.from(stringList).first().subscribe(new Subscriber<String>() {
+        Observable.from(duplicatedList).distinct(new Func1<String, String>() {
+            @Override
+            public String call(String s) {
+                return s;
+            }
+        }).subscribe(new Observer<String>() {
             @Override
             public void onCompleted() {
                 Log.d("TEST", "onCompleted");

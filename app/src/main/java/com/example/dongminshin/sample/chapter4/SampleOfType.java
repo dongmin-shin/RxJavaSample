@@ -5,22 +5,28 @@ import android.util.Log;
 import com.example.dongminshin.executor.BaseExecutor;
 import com.example.dongminshin.sample.SampleStringList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
 
 /**
- * Created by DongMinShin on 16. 5. 23..
+ * Created by DongMinShin on 16. 5. 22..
  */
-public class SampleFirst extends BaseExecutor {
-
+public class SampleOfType extends BaseExecutor {
     @Override
     public void execute() {
         SampleStringList sampleStringList = new SampleStringList();
-        List<String> stringList = sampleStringList.getSampleList();
+        List<String> sampleList = sampleStringList.getSampleList();
 
-        Observable.from(stringList).first().subscribe(new Subscriber<String>() {
+        List<Object> sampleTypeList = new ArrayList<>(sampleList);
+        sampleTypeList.add(new Integer(10));
+        sampleTypeList.add(new Integer(3));
+        sampleTypeList.add(new Integer(20));
+        sampleTypeList.add(new Integer(50));
+
+        Observable.from(sampleTypeList).ofType(Integer.class).subscribe(new Subscriber<Object>() {
             @Override
             public void onCompleted() {
                 Log.d("TEST", "onCompleted");
@@ -32,8 +38,8 @@ public class SampleFirst extends BaseExecutor {
             }
 
             @Override
-            public void onNext(String s) {
-                Log.d("TEST", "onNext : " + s);
+            public void onNext(Object o) {
+                Log.d("TEST", "onNext : " + o);
             }
         });
     }

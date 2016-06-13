@@ -1,6 +1,8 @@
 package com.example.dongminshin.sample.chapter4;
 
 import android.os.AsyncTask;
+import android.os.SystemClock;
+import android.util.Log;
 
 import com.example.dongminshin.executor.BaseExecutor;
 
@@ -22,32 +24,26 @@ public class SampleDebounce extends BaseExecutor {
             this.publishSubject = publishSubject;
         }
 
+        private int emitItem(int i, long ms) {
+            Log.d("TEST", "send value is " + i);
+            publishSubject.onNext("value is " + i);
+            SystemClock.sleep(ms);
+            return ++i;
+        }
+
         @Override
         protected Void doInBackground(Void... params) {
-            int i=0;
-            while (i < 5) {
-                publishSubject.onNext("value is " + i);
-                i += 1;
-                try {
-                    Thread.sleep((long) (1 * 1000));
-                } catch (InterruptedException e) {
-                }
+            int i = 0;
+
+            // 1초 마다 발행
+            while (i < 3) {
+                i = emitItem(i, 1000);
             }
 
-            try {
-                Thread.sleep((long) (2 * 1000));
-            } catch (InterruptedException e) {
-            }
-
+            i = emitItem(i, 4000);
             while (i < 10) {
-                publishSubject.onNext("value is " + i);
-                i += 1;
-                try {
-                    Thread.sleep((long) (3 * 1000));
-                } catch (InterruptedException e) {
-                }
+                i = emitItem(i, 1500);
             }
-
 
             publishSubject.onCompleted();
             return null;
@@ -58,27 +54,25 @@ public class SampleDebounce extends BaseExecutor {
     public void execute() {
         PublishSubject<String> publishSubject = PublishSubject.create();
         publishSubject
-                .debounce(2, TimeUnit.SECONDS)
+                .debounce(3, TimeUnit.SECONDS)
                 .subscribe(new Subscriber<String>() {
                     @Override
                     public void onCompleted() {
-                        System.out.println("onCompleted");
+                        Log.d("TEST", "onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        System.out.println("onError : " + e.getMessage());
+                        Log.d("TEST", "onError", e);
                     }
 
                     @Override
                     public void onNext(String s) {
-                        System.out.println("onNext : " + s);
+                        Log.d("TEST", "onNext : " + s);
                     }
                 });
 
         TestAsyncClass testAsyncClass = new TestAsyncClass(publishSubject);
         testAsyncClass.execute();
-
     }
-
 }

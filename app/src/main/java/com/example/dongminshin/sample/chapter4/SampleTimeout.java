@@ -1,6 +1,8 @@
 package com.example.dongminshin.sample.chapter4;
 
 import android.os.AsyncTask;
+import android.os.SystemClock;
+import android.util.Log;
 
 import com.example.dongminshin.executor.BaseExecutor;
 
@@ -24,16 +26,16 @@ public class SampleTimeout extends BaseExecutor {
 
         @Override
         protected Void doInBackground(Void... params) {
-            int i=0;
-            while (i < 5) {
-                System.out.println("send value is " + i);
+            int i = 0;
+            while (i < 8) {
+                Log.d("TEST", "send value is " + i);
                 publishSubject.onNext("value is " + i);
-                try {
-                    i += 1;
-                    Thread.sleep(3 * 1000);
-                } catch (InterruptedException e) {
-                    break;
+                long defaultTime = 1 * 1000;
+                if (i == 2) {
+                    defaultTime = 3 * 1000;
                 }
+                i += 1;
+                SystemClock.sleep(defaultTime);
             }
 
             publishSubject.onCompleted();
@@ -49,23 +51,21 @@ public class SampleTimeout extends BaseExecutor {
                 .subscribe(new Subscriber<String>() {
                     @Override
                     public void onCompleted() {
-                        System.out.println("onCompleted");
+                        Log.d("TEST", "onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        System.out.println("onError : " + e.getMessage());
+                        Log.d("TEST", "onError", e);
                     }
 
                     @Override
                     public void onNext(String s) {
-                        System.out.println("onNext : " + s);
+                        Log.d("TEST", "onNext : " + s);
                     }
                 });
 
         TestAsyncClass testAsyncClass = new TestAsyncClass(publishSubject);
         testAsyncClass.execute();
-
     }
-
 }

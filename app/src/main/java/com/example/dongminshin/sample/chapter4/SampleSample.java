@@ -1,6 +1,8 @@
 package com.example.dongminshin.sample.chapter4;
 
 import android.os.AsyncTask;
+import android.os.SystemClock;
+import android.util.Log;
 
 import com.example.dongminshin.executor.BaseExecutor;
 
@@ -24,16 +26,12 @@ public class SampleSample extends BaseExecutor {
 
         @Override
         protected Void doInBackground(Void... params) {
-            int i=0;
+            int i = 0;
             while (i < 10) {
-                System.out.println("send value is " + i);
+                Log.d("TEST", "send value is " + i);
                 publishSubject.onNext("value is " + i);
-                try {
-                    i += 1;
-                    Thread.sleep(1 * 1000);
-                } catch (InterruptedException e) {
-                    break;
-                }
+                i += 1;
+                SystemClock.sleep(1 * 1000);
             }
 
             publishSubject.onCompleted();
@@ -49,17 +47,17 @@ public class SampleSample extends BaseExecutor {
                 .subscribe(new Subscriber<String>() {
                     @Override
                     public void onCompleted() {
-                        System.out.println("onCompleted");
+                        Log.d("TEST", "onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        System.out.println("onError : " + e.getMessage());
+                        Log.d("TEST", "onError", e);
                     }
 
                     @Override
                     public void onNext(String s) {
-                        System.out.println("onNext : " + s);
+                        Log.d("TEST", "onNext : " + s);
                     }
                 });
 
