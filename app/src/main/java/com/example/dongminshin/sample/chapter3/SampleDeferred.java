@@ -14,6 +14,8 @@ public class SampleDeferred extends BaseExecutor {
 
     @Override
     public void execute() {
+
+        // Defer는 나중에 Lazy Load와 같은 것을 할 때 쓴다고 하는데.. 흠.
         Observable<Integer> deferred = Observable.defer(new Func0<Observable<Integer>>() {
             @Override
             public Observable<Integer> call() {

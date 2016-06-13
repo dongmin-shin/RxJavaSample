@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.dongminshin.rxjavasample.R;
-import com.example.dongminshin.sample.chapter8.SampleApiManager;
-import com.example.dongminshin.sample.chapter8.models.User;
+import com.example.dongminshin.sample.chapter8.StackExchangeAPIManager;
+import com.example.dongminshin.sample.chapter8.models.stackexchange.User;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -27,7 +27,7 @@ public class StackExchangeActivity extends AppCompatActivity {
     @BindView(R.id.stack_exchange_recycler_view)
     RecyclerView recyclerView;
 
-    RecyclerViewAdapter recyclerViewAdapter;
+    StachExchangeViewAdapter stachExchangeViewAdapter;
     RecyclerView.LayoutManager recyclerViewLayoutManager;
 
     @Override
@@ -43,14 +43,14 @@ public class StackExchangeActivity extends AppCompatActivity {
         recyclerViewLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
 
-        recyclerViewAdapter = new RecyclerViewAdapter(new ArrayList<>());
-        recyclerView.setAdapter(recyclerViewAdapter);
+        stachExchangeViewAdapter = new StachExchangeViewAdapter(new ArrayList<>());
+        recyclerView.setAdapter(stachExchangeViewAdapter);
 
         refreshUserList();
     }
 
     private void refreshUserList() {
-        SampleApiManager.getInstance().getMostPopularSOusers(10)
+        StackExchangeAPIManager.getInstance().getMostPopularSOusers(10)
                 .subscribe(new Subscriber<List<User>>() {
                     @Override
                     public void onCompleted() {
@@ -64,7 +64,7 @@ public class StackExchangeActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(List<User> userList) {
-                        recyclerViewAdapter.updateUserList(userList);
+                        stachExchangeViewAdapter.updateUserList(userList);
                     }
                 });
     }

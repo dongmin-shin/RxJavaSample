@@ -1,4 +1,4 @@
-package com.example.dongminshin.sample.chapter8.models;
+package com.example.dongminshin.sample.chapter8.models.stackexchange;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

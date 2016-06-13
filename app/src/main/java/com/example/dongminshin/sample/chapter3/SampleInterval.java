@@ -3,6 +3,7 @@ package com.example.dongminshin.sample.chapter3;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.widget.Toast;
 
 import com.example.dongminshin.executor.BaseExecutor;
@@ -40,6 +41,7 @@ public class SampleInterval extends BaseExecutor {
 
                     @Override
                     public void onNext(Long aLong) {
+                        SystemClock.sleep(5000);
                         Handler handler = new Handler(Looper.getMainLooper());
                         handler.post(new Runnable() {
                             @Override

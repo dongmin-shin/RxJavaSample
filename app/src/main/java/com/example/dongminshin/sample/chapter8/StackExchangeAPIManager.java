@@ -1,7 +1,7 @@
 package com.example.dongminshin.sample.chapter8;
 
-import com.example.dongminshin.sample.chapter8.models.User;
-import com.example.dongminshin.sample.chapter8.models.UsersResponse;
+import com.example.dongminshin.sample.chapter8.models.stackexchange.User;
+import com.example.dongminshin.sample.chapter8.models.stackexchange.UsersResponse;
 
 import java.util.List;
 
@@ -16,14 +16,14 @@ import rx.schedulers.Schedulers;
 /**
  * Created by DongMinShin on 16. 6. 1..
  */
-public class SampleApiManager {
+public class StackExchangeAPIManager {
 
     public static final String HTTPS_API_STACKEXCHANGE_URL = "https://api.stackexchange.com";
-    private static SampleApiManager INSTANCE;
+    private static StackExchangeAPIManager INSTANCE;
 
     private final StackExchangeAPI stackExchangeAPI;
 
-    private SampleApiManager() {
+    private StackExchangeAPIManager() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HTTPS_API_STACKEXCHANGE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -33,9 +33,9 @@ public class SampleApiManager {
         stackExchangeAPI = retrofit.create(StackExchangeAPI.class);
     }
 
-    public static SampleApiManager getInstance() {
+    public static StackExchangeAPIManager getInstance() {
         if (INSTANCE == null) {
-            return new SampleApiManager();
+            return new StackExchangeAPIManager();
         }
 
         return INSTANCE;

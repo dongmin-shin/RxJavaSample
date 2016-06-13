@@ -8,9 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dongminshin.rxjavasample.R;
-import com.example.dongminshin.sample.chapter8.models.User;
+import com.example.dongminshin.sample.chapter8.models.stackexchange.User;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +20,11 @@ import butterknife.ButterKnife;
 /**
  * Created by DongMinShin on 16. 6. 1..
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class StachExchangeViewAdapter extends RecyclerView.Adapter<StachExchangeViewAdapter.ViewHolder> {
 
     private List<User> userList = new ArrayList<>();
 
-    public RecyclerViewAdapter(List<User> userList) {
+    public StachExchangeViewAdapter(List<User> userList) {
         this.userList = userList;
     }
 
